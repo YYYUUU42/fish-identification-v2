@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.fish.mapper.FishInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.yunqi.fish.model.entity.FishInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="fishkinds" column="fishKinds" jdbcType="VARCHAR"/>
+            <result property="fishlatinname" column="fishLatinName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,fishKinds,fishLatinName
+    </sql>
+</mapper>

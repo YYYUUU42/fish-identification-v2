@@ -1,0 +1,90 @@
+server:
+  port: 6002
+spring:
+  application:
+    name: identification
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fish?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  servlet:
+    multipart:
+      max-file-size: 100MB        # 设置单个文件最大大小为10MB
+      max-request-size: 1000MB    # 设置多个文件大小为100MB
+  mail: # 邮件配置
+    host:  smtp.qq.com
+    username:  2758345412@qq.com
+    password:  ynzbcrjlbxnmddea
+    default-encoding: utf-8 # 编码格式
+    protocol: smtp # 协议
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+  redis:
+    host: localhost
+    port: 6379
+    database: 6
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20 #最大连接数
+        max-wait: -1    #最大阻塞等待时间(负数表示没限制)
+        max-idle: 5    #最大空闲
+        min-idle: 0     #最小空闲
+
+mybatis-plus:
+  global-config:
+    #    开启前缀扫描
+    db-config:
+      #      开启id自增,关闭雪花算法
+      id-type: auto
+      #      全局的逻辑删除
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+#prometheus监控平台配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: configprops
+  endpoint:
+    health:
+      show-details: ALWAYS
+  metrics:
+    tags:
+      application: ${server.servlet.context-path}
+
+
+yu:
+  third-party:
+    sms:
+      apiUrl: https://sms_developer.zhenzikj.com
+      appId: 113503
+      appSecret: NDY5NWRiNzMtYzVlZC00NTI3LTk4YmMtNzU2ZTNmYjdkOWEy
+      templateId: 12235
+
+knife4j:
+  # 增强功能开启
+  enable: true
+  # 开启生产环境屏蔽（该选项配置后，无法访问页面）
+  production: false
+  # 开启Swagger的Basic认证功能,默认是false，配置后登录才可访问页面
+  basic:
+    enable: true
+    # Basic认证用户名
+    username: admin
+    # Basic认证密码
+    password: 123456
+
